@@ -39,15 +39,15 @@ class CountdownTimer {
   }
 
   refs = {
-    days: document.querySelector(`this.selector [data-value="days"]`),
-    hours: document.querySelector(`this.selector [data-value="hours"]`),
-    mins: document.querySelector(`this.selector [data-value="mins"]`),
-    secs: document.querySelector(`this.selector [data-value="secs"]`),
+    days: document.querySelector(`[data-value="days"]`),
+    hours: document.querySelector(`[data-value="hours"]`),
+    mins: document.querySelector(`[data-value="mins"]`),
+    secs: document.querySelector(`[data-value="secs"]`),
   };
 
   countdown() {
     const nowTime = Date.now();
-    const time = this.targetTime - nowTime;
+    const time = this.targetDate - nowTime;
 
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
     const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -58,12 +58,16 @@ class CountdownTimer {
   }
 
   writeTimeDown() {
-    const { days, hours, mins, secs } = this.countdown.call();
+    const { days, hours, mins, secs } = this.countdown();
 
-    this.refs.days.textContent = days;
+    this.refs.days.textContent = days.toString().padStart(2, 0);
     this.refs.hours.textContent = hours.toString().padStart(2, 0);
     this.refs.mins.textContent = String(mins).padStart(2, 0);
     this.refs.secs.textContent = secs.toString().padStart(2, 0);
+  }
+
+  markUpTime() {
+    setInterval(this.writeTimeDown, 1000);
   }
 }
 
@@ -72,5 +76,4 @@ const countDown = new CountdownTimer({
   targetDate: new Date("Jul 17, 2022"),
 });
 
-countDown.writeTimeDown.call();
-countDown.setInterval.call(writeTimeDown, 1000);
+countDown.markUpTime();
