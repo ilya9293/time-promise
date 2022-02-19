@@ -67,7 +67,7 @@ class CountdownTimer {
   }
 
   markUpTime() {
-    setInterval(this.writeTimeDown, 1000);
+    setInterval(this.writeTimeDown.bind(this), 1000);
   }
 }
 
