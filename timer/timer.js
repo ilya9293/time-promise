@@ -39,7 +39,7 @@ class CountdownTimer {
   }
 
   refs = {
-    days: document.querySelector(`[data-value="days"]`),
+    days: document.querySelector(`[data-value="hours"]`),
     hours: document.querySelector(`[data-value="hours"]`),
     mins: document.querySelector(`[data-value="mins"]`),
     secs: document.querySelector(`[data-value="secs"]`),
@@ -67,6 +67,7 @@ class CountdownTimer {
   }
 
   markUpTime() {
+    this.writeTimeDown();
     setInterval(this.writeTimeDown.bind(this), 1000);
   }
 }
